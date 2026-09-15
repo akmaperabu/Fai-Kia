@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fai & Kia — Undangan Pernikahan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/amsterdam-four" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body class="locked">
+
+<audio id="bgMusic" src="assets/music.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Putar musik">
+  <span class="music-icon" id="musicIcon">♪</span>
+</button>
+
+  <div class="bg-slideshow" id="bgSlideshow" aria-hidden="true">
+    <div class="bg-photo" style="background-image:url('assets/foto1.jpg')"></div>
+    <div class="bg-photo" style="background-image:url('assets/foto2.jpg')"></div>
+    <div class="bg-photo" style="background-image:url('assets/foto3.jpg')"></div>
+    <div class="bg-photo" style="background-image:url('assets/foto4.jpg')"></div>
+  </div>
+
+  <!-- COVER -->
+  <section class="cover" id="cover">
+    <div class="cover-scrim"></div>
+    <div class="cover-content">
+
+      <div class="cover-top">
+        <p class="cover-kicker">Undangan Pernikahan</p>
+        <h1 class="cover-names">Fai<span class="amp">&amp;</span>Kia</h1>
+        <p class="cover-date">09 . 06 . 2026</p>
+      </div>
+
+      <div class="cover-bottom">
+        <div class="cover-welcome">
+          <p class="cover-guest">
+            <span>Dear</span>
+          </p>
+          <p class="cover-guest-name guest-name" id="guestName">Bapak/Ibu/Saudara/i</p>
+          <p class="cover-invite">Kami mengundang dengan penuh hati<br>untuk hadir di momen spesial kami</p>
+        </div>
+
+        <div class="cover-cta">
+          <button class="open-btn" id="openBtn" type="button">Buka Undangan</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <p class="hero-kicker">Undangan Pernikahan</p>
+      <p class="hero-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <p class="hero-subkicker">Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang</p>
+
+      <h2 class="hero-names serif">
+        Ahmad Rifai
+        <span class="hero-amp">&amp;</span>
+        Sarkiyah
+      </h2>
+      <p class="hero-date">Jumat, 09 Oktober 2026</p>
+      <p class="hero-location">Blok B1, Desa Sari Mulya</p>
+    </div>
+  </section>
+
+  <!-- OPEN INVITATION -->
+  <section class="content invite-section" id="undangan-terbuka">
+    <div class="content-inner invite-inner">
+      <div class="invite-card">
+        <p class="section-label">Open Invitation</p>
+        <p class="invite-text">
+          Tanpa mengurangi rasa hormat,<br>
+          kami mengundang <span class="invite-highlight">Bapak / Ibu / Saudara/i</span><br>
+          serta hadirin sekalian untuk turut hadir<br>
+          dalam syukuran pernikahan putra-putri kami.
+        </p>
+        <div class="invite-divider"></div>
+        <p class="invite-footnote">Kehadiran Anda adalah kebahagiaan terbesar kami.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMPELAI -->
+  <section class="content" id="mempelai">
+    <div class="content-inner">
+      <h2 class="section-title">We Are Getting Married</h2>
+      
+
+      <div class="couple-stack">
+        <div class="couple-block">
+          <div class="couple-photo-full" style="background-image:url('assets/fai.jpg')"></div>
+          <div class="couple-info couple-info-right">
+            <h3 class="couple-name serif">Ahmad Rifai</h3>
+            <p class="couple-parents">
+              Putra pertama dari<br>
+              Bapak Purwanto &amp; Ibu Siapa
+            </p>
+            <div class="couple-instagram">
+              <a href="https://instagram.com/ahmad.rifai__" target="_blank" rel="noopener noreferrer">
+                <span>@ahmad.rifai__
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="couple-block">
+          <div class="couple-photo-full" style="background-image:url('assets/kia.jpg')"></div>
+          <div class="couple-info couple-info-left">
+            <h3 class="couple-name serif">Sarkiyah</h3>
+            <p class="couple-parents">
+              Putri kedua dari<br>
+              Bapak Siapa &amp; Ibu Siapa
+            </p>
+            <div class="couple-instagram">
+              <a href="https://instagram.com/yh.sarr" target="_blank" rel="noopener noreferrer">
+                <span> @yh.sarr
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERI -->
+  <section class="content gallery-section" id="galeri">
+    <div class="content-inner">
+      <p class="section-label">Moments</p>
+      <h2 class="section-title serif">Galeri Kami</h2>
+
+      <div class="gallery-stage" id="galleryStage" aria-label="Galeri foto perjalanan cinta">
+        <button class="gallery-item" type="button" style="background-image:url('assets/foto1.jpg')" aria-label="Buka foto 1"></button>
+        <button class="gallery-item" type="button" style="background-image:url('assets/foto2.jpg')" aria-label="Buka foto 2"></button>
+        <button class="gallery-item" type="button" style="background-image:url('assets/foto3.jpg')" aria-label="Buka foto 3"></button>
+        <button class="gallery-item" type="button" style="background-image:url('assets/foto4.jpg')" aria-label="Buka foto 4"></button>
+        <button class="gallery-item" type="button" style="background-image:url('assets/foto5.jpg')" aria-label="Buka foto 5"></button>
+        <button class="gallery-item" type="button" style="background-image:url('assets/foto6.jpg')" aria-label="Buka foto 6"></button>
+        <button class="gallery-item" type="button" style="background-image:url('assets/foto1.jpg')" aria-label="Buka foto 7"></button>
+        <button class="gallery-item" type="button" style="background-image:url('assets/foto2.jpg')" aria-label="Buka foto 8"></button>
+      </div>
+      <div class="gallery-dots" id="galleryDots"></div>
+      <div class="gallery-controls">
+        <button class="gallery-arrow gallery-arrow-prev" type="button" aria-label="Foto sebelumnya">‹</button>
+        <button class="gallery-arrow gallery-arrow-next" type="button" aria-label="Foto berikutnya">›</button>
+      </div>
+
+      <div class="gallery-modal" id="galleryModal" aria-hidden="true">
+        <div class="gallery-modal-backdrop" data-close="true"></div>
+        <div class="gallery-modal-content">
+          <button class="gallery-modal-close" type="button" aria-label="Tutup galeri">×</button>
+          <button class="gallery-modal-nav gallery-modal-prev" type="button" aria-label="Foto sebelumnya">‹</button>
+          <img id="galleryPreview" src="assets/foto2.jpg" alt="Preview foto galeri" />
+          <button class="gallery-modal-nav gallery-modal-next" type="button" aria-label="Foto berikutnya">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACARA -->
+  <section class="content" id="acara">
+    <div class="content-inner">
+      <p class="section-label">Waktu &amp; Tempat</p>
+      <h2 class="section-title serif">Acara</h2>
+
+      <div class="event-grid">
+        <div class="event-card">
+          <h3 class="event-name">Akad Nikah</h3>
+          <p class="event-detail">
+            <strong>Jumat, 09 Oktober 2026</strong>
+            <br>Pukul 08.00 WITA<br>
+            <span class="event-icon">📍</span>Blok B1 Desa Sari Mulya<br>
+          </p>
+        </div>
+        <div class="event-card">
+          <h3 class="event-name">Resepsi</h3>
+          <p class="event-detail">
+            <strong>Jumat, 09 Oktober 2026</strong>
+            <br>Pukul 09.00 WITA – Selesai<br>
+            <span class="event-icon">📍</span>Blok B1 Desa Sari Mulya<br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPAT PELAKSANAAN -->
+  <section class="content" id="lokasi">
+    <div class="content-inner">
+      <p class="section-label">Lokasi</p>
+      <h2 class="section-title serif">Tempat Pelaksanaan</h2>
+
+      <div class="venue-card">
+        <div class="venue-pin" aria-hidden="true">📍</div>
+        <h3 class="venue-title serif">Jl Transmigrasi</h3>
+        <p class="venue-address">
+          Setelah perempatan Pasar Blok B1, Arah Blok E1<br>
+          Tanah Bumbu
+        </p>
+        <a class="venue-maps-btn" href="https://maps.app.goo.gl/KE5tMm5VEWme1Dgc7" target="_blank" rel="noreferrer">
+          Buka di Google Maps
+        </a>
+      </div>
+
+      <div class="venue-map-wrap">
+        <a class="venue-map-pill" href="https://maps.app.goo.gl/KE5tMm5VEWme1Dgc7" target="_blank" rel="noreferrer">
+          Buka di Maps ↗
+        </a>
+        <iframe
+          class="event-map"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1234.1881823185552!2d115.88721511853818!3d-3.27541261126177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sid!2sid!4v1789434841725!5m2!1sid!2sid"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen=""
+          title="Lokasi acara pernikahan">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SAVE THE DATE -->
+  <section class="content savedate-section" id="savedate">
+    <div class="content-inner">
+      <p class="section-label">Jangan Lewatkan</p>
+      <h2 class="section-title serif">Save The Date</h2>
+
+      <div class="countdown" id="countdown" aria-label="Hitung mundur menuju hari pernikahan">
+        <div class="countdown-cell"><span class="countdown-num" id="cd-days">00</span><span class="countdown-label">Hari</span></div>
+        <div class="countdown-cell"><span class="countdown-num" id="cd-hours">00</span><span class="countdown-label">Jam</span></div>
+        <div class="countdown-cell"><span class="countdown-num" id="cd-mins">00</span><span class="countdown-label">Menit</span></div>
+        <div class="countdown-cell"><span class="countdown-num" id="cd-secs">00</span><span class="countdown-label">Detik</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HADIAH -->
+  <section class="content" id="hadiah">
+    <div class="content-inner">
+      <p class="section-label">Tanda Kasih</p>
+      <h2 class="section-title serif">Hadiah</h2>
+      <p class="gift-intro">
+        Doa restu Bapak/Ibu/Saudara/i merupakan karunia yang sangat berarti bagi kami.
+        Namun jika ingin memberi tanda kasih, kami dengan senang hati menerimanya melalui:
+      </p>
+
+      <div class="gift-grid">
+        <div class="gift-card">
+          <p class="gift-label">Transfer Bank</p>
+          <p class="gift-bank">Bank Mandiri</p>
+          <p class="gift-number" id="giftBankNumber">1234567890</p>
+          <p class="gift-owner">a.n. Ahmad Rifai</p>
+          <button class="gift-copy" type="button" data-copy-target="giftBankNumber">Salin Nomor</button>
+        </div>
+
+        <div class="gift-card">
+          <p class="gift-label">E-Wallet</p>
+          <p class="gift-bank">Dana / OVO / GoPay</p>
+          <p class="gift-number" id="giftEwalletNumber">081234567890</p>
+          <p class="gift-owner">a.n. Sarkiyah</p>
+          <button class="gift-copy" type="button" data-copy-target="giftEwalletNumber">Salin Nomor</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ucapan -->
+  <section class="content rsvp-section" id="rsvp">
+    <div class="content-inner">
+      <p class="section-label">Ucapan</p>
+      <div class="rsvp-card">
+        <p class="rsvp-intro">Berikan ucapan dan<br>doa restu untuk kami.</p>
+
+        <form class="rsvp-form" id="rsvpForm">
+          <p class="clossing-foot">Nama</p>
+          <label class="rsvp-field">
+            <input type="text" id="rsvpNama" placeholder="Nama" required>
+          </label>
+          <p class="rsvp-label">Ucapan</p>
+          <label class="rsvp-field is-textarea">
+            <textarea id="rsvpUcapan" placeholder="Tulis ucapan..." required></textarea>
+          </label>
+          <button class="rsvp-submit" type="submit">Kirim →</button>
+        </form>
+        <p class="rsvp-note" id="rsvpNote" style="display:none;">Terima kasih atas ucapan dan doanya 🙏</p>
+
+        <div class="rsvp-list" id="rsvpList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="content closing" id="penutup">
+    <div class="content-inner">
+      <p class="closing-message">
+        "Tanpa kehadiran kalian, pesta ini hanyalah sebuah acara. Dengan kehadiran kalian, ia menjadi bermakna"
+      </p>
+      <h2 class="closing-names serif">Fai &amp; Kia</h2>
+      <p class="hero-date">9&nbsp;&nbsp;.&nbsp;&nbsp;10&nbsp;&nbsp;.&nbsp;&nbsp;2026</p>
+      <p class="closing-foot">Invitation by<a href="https://instagram.com/jyhsn__" target="_blank" rel="noopener noreferrer">
+    @jyhsn__
+  </a>
+</p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
