@@ -117,7 +117,7 @@
     text-align:center;
     padding:28px 20px 44px;
     overflow:hidden;
-    background-image:url('assets/bunga.png');
+    background-image:url('bunga.png');
     background-size:cover;
     background-position:center center;
     background-repeat:no-repeat;
@@ -1179,7 +1179,7 @@
     content:"";
     position:absolute;
     inset:0;
-    background-image:url('assets/bunga.png');
+    background-image:url('bunga.png');
     background-size:100% 100%;
     background-repeat:no-repeat;
     opacity:0.4;
