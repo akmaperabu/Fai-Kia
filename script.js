@@ -181,15 +181,17 @@
         });
       });
 
-      prevArrow?.addEventListener('click', () => { goTo(activeIndex - 1); restartAutoplay(); });
-      nextArrow?.addEventListener('click', () => { goTo(activeIndex + 1); restartAutoplay(); });
-      closeModalBtn?.addEventListener('click', closeModal);
-      prevModalBtn?.addEventListener('click', () => showModalStep(-1));
-      nextModalBtn?.addEventListener('click', () => showModalStep(1));
+      if (prevArrow) prevArrow.addEventListener('click', () => { goTo(activeIndex - 1); restartAutoplay(); });
+      if (nextArrow) nextArrow.addEventListener('click', () => { goTo(activeIndex + 1); restartAutoplay(); });
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+      if (prevModalBtn) prevModalBtn.addEventListener('click', () => showModalStep(-1));
+      if (nextModalBtn) nextModalBtn.addEventListener('click', () => showModalStep(1));
 
-      modal?.addEventListener('click', (event) => {
-        if (event.target.matches('[data-close="true"]')) closeModal();
-      });
+      if (modal) {
+        modal.addEventListener('click', (event) => {
+          if (event.target.matches('[data-close="true"]')) closeModal();
+        });
+      }
 
       document.addEventListener('keydown', (event) => {
         if (!modal || !modal.classList.contains('is-open')) return;
@@ -229,21 +231,23 @@
       let modalDragStartX = 0;
       let modalDragging = false;
 
-      modalContent?.addEventListener('pointerdown', (event) => {
-        modalDragStartX = event.clientX;
-        modalDragging = true;
-      });
-      modalContent?.addEventListener('pointerup', (event) => {
-        if (!modalDragging) return;
-        const deltaX = event.clientX - modalDragStartX;
-        if (Math.abs(deltaX) > 40) {
-          showModalStep(deltaX < 0 ? 1 : -1);
-        }
-        modalDragging = false;
-      });
-      modalContent?.addEventListener('pointerleave', () => {
-        modalDragging = false;
-      });
+      if (modalContent) {
+        modalContent.addEventListener('pointerdown', (event) => {
+          modalDragStartX = event.clientX;
+          modalDragging = true;
+        });
+        modalContent.addEventListener('pointerup', (event) => {
+          if (!modalDragging) return;
+          const deltaX = event.clientX - modalDragStartX;
+          if (Math.abs(deltaX) > 40) {
+            showModalStep(deltaX < 0 ? 1 : -1);
+          }
+          modalDragging = false;
+        });
+        modalContent.addEventListener('pointerleave', () => {
+          modalDragging = false;
+        });
+      }
 
       goTo(0);
       restartAutoplay();
