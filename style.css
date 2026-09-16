@@ -19,7 +19,7 @@
   }
 
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-x:hidden;}
   body{
     margin:0;
     font-family:'Jost',sans-serif;
@@ -27,6 +27,7 @@
     background:var(--cream);
     overflow-x:hidden;
     min-height:100vh;
+    min-height:100dvh;
   }
   body.locked{ overflow:hidden; height:100vh; }
 
@@ -111,6 +112,7 @@
     position:relative;
     z-index:2;
     min-height:100vh;
+    min-height:100dvh;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -307,6 +309,7 @@
     position:relative;
     z-index:1;
     min-height:100vh;
+    min-height:100dvh;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -1140,6 +1143,9 @@
     letter-spacing:0.06em;
     margin:0 0 6px;
     font-weight:500;
+    color:var(--paper) !important;
+    -webkit-text-fill-color:var(--paper);
+    text-decoration:none !important;
   }
   .gift-owner{
     font-size:0.85rem;
