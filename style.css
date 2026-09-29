@@ -5,14 +5,14 @@
      - --hold-duration : lama satu foto ditampilkan penuh (detik)
   ========================================================= */
   :root{
-    --ink:#f3ecdc;         /* teks utama, krem hangat terang di atas gelap */
-    --ink-soft:#cabf9f;
-    --cream:#111110;       /* hitam kearah abu gelap, dasar konten */
-    --paper:#f6f0e2;
-    --gold:#c8a463;        /* emas pudar, aksen utama */
-    --gold-soft:#e2c98f;
-    --sage:#d9bd85;        /* dulu sage hijau, sekarang emas muted (label kecil) */
-    --line:rgba(226,201,143,0.22);
+    --ink:#4b3d2f;         /* teks utama, cokelat hangat */
+    --ink-soft:#8a7a64;
+    --cream:#f8f2e7;       /* dasar konten, ivory terang */
+    --paper:#4b3d2f;       /* teks di area terang */
+    --gold:#b08d57;
+    --gold-soft:#a98450;   /* emas yang cukup kontras di latar terang */
+    --sage:#a98450;
+    --line:rgba(169,132,80,0.35);
 
     --fade-duration: 1s;   /* <-- durasi transisi memudar (diminta 1 detik) */
     --hold-duration: 4s;   /* lama tiap foto tampil penuh sebelum memudar */
@@ -20,15 +20,15 @@
 
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth; overflow-x:hidden;}
-  body{
-    margin:0;
-    font-family:'Jost',sans-serif;
-    color:var(--ink);
-    background:var(--cream);
-    overflow-x:hidden;
-    min-height:100vh;
-    min-height:100dvh;
-  }
+ body {
+  margin: 0;
+  font-family: 'Jost', sans-serif;
+  color: #fff;
+  background: transparent; /* Ubah dari var(--cream) menjadi transparent */
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
   body.locked{ overflow:hidden; height:100vh; }
 
   h1,h2,h3,.serif{
@@ -61,8 +61,8 @@
     transition:background 0.6s ease;
   }
   body.opened .bg-slideshow::after{
-    background:rgba(0,0,0,0.2);
-  }
+  background: transparent;
+}
   body.opened .bg-slideshow{
     opacity:1;
   }
@@ -83,7 +83,7 @@
     animation-timing-function:linear;
   }
   body.opened .bg-photo{
-    filter:blur(1px) brightness(0.9);
+    filter:blur(0.2px);
     transform:scale(1.08);
   }
   .bg-photo:nth-child(1){ animation-delay:0s; }
@@ -155,15 +155,6 @@
     justify-content:space-between;
     gap:10px;
   }
-  .cover-content::before{
-    content:"";
-    position:absolute;
-    inset:14px;
-    border:1px solid rgba(226,201,143,0.5);
-    clip-path:polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 40px 100%, 0 calc(100% - 40px));
-    pointer-events:none;
-    z-index:0;
-  }
   .cover-top,
   .cover-bottom{
     display:flex;
@@ -202,7 +193,7 @@
   .divider-line{
     width:52px;
     height:1px;
-    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    background:linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.188), transparent);
     display:block;
   }
   .divider-star{
@@ -319,7 +310,7 @@
     opacity:0;
     transform:translateY(14px);
     transition:opacity 0.9s ease 0.3s, transform 0.9s ease 0.3s;
-    background:rgba(12, 12, 12, 0.538);
+    background:rgba(0, 0, 0, 0.108);
   }
   body.opened .hero{
     opacity:1;
@@ -387,7 +378,7 @@
     font-size:0.68rem;
     letter-spacing:0.26em;
     text-transform:uppercase;
-    color:rgba(246,240,226,0.65);
+    color:rgba(75,61,47,0.65);
     margin-bottom:34px;
   }
   .hero-amp{
@@ -408,7 +399,7 @@
     margin-top:6px;
     font-size:0.9rem;
     letter-spacing:0.04em;
-    color:rgba(246,240,226,0.75);
+    color:rgba(75,61,47,0.75);
   }
   .hero-scroll{
     margin-top:56px;
@@ -420,7 +411,7 @@
     font-size:0.68rem;
     letter-spacing:0.3em;
     text-transform:uppercase;
-    color:rgba(246,240,226,0.6);
+    color:rgba(75,61,47,0.6);
   }
   .hero-scroll-line{
     width:1px;
@@ -484,7 +475,7 @@
     font-style:italic;
     font-size:1.15rem;
     line-height:2;
-    color:rgba(246,240,226,0.92);
+    color:rgba(75,61,47,0.92);
     margin:22px 0 36px;
   }
   .invite-highlight{
@@ -502,7 +493,7 @@
     font-family:'Cormorant Garamond', serif;
     font-style:italic;
     font-size:1rem;
-    color:rgba(246,240,226,0.75);
+    color:rgba(75,61,47,0.75);
   }
   .hero-names{
     font-size:clamp(1.7rem, 6vw, 2.6rem);
@@ -527,8 +518,8 @@
   .countdown-cell{
     min-width:88px;
     padding:18px 14px 12px;
-    border:1px solid rgba(255,255,255,0.15);
-    background:rgba(255,255,255,0.03);
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.6);
     text-align:center;
   }
   .countdown-num{
@@ -563,12 +554,12 @@
      SHARED SECTION STYLES (konten setelah hero, latar solid
      agar menutupi slideshow di belakangnya)
   --------------------------------------------------------- */
-  section.content{
-    position:relative;
-    z-index:1;
-    background:var(--cream);
-    padding:72px 24px;
-  }
+  section.content {
+  position: relative;
+  z-index: 1;
+  background: transparent; /* Ubah dari var(--cream) menjadi transparent */
+  padding: 72px 24px;
+}
   section.content:not(#mempelai):not(#galeri):not(#cerita){
     background:transparent;
     color:var(--paper);
@@ -730,231 +721,7 @@
     text-shadow:0 2px 12px rgba(0,0,0,0.4);
   }
 
-  /* Galeri — scattered polaroid pile */
-  .gallery-section{
-    background:var(--paper);
-  }
-  .gallery-stage{
-    position:relative;
-    width:100%;
-    max-width:520px;
-    height:min(78vw, 380px);
-    margin:0 auto;
-    touch-action:pan-y;
-  }
-  .gallery-item{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:min(58vw, 300px);
-    height:min(58vw, 300px);
-    border:none;
-    background-color:#fff;
-    background-size:cover;
-    background-position:center;
-    background-clip:content-box, border-box;
-    padding:10px 10px 28px;
-    box-shadow:0 14px 30px rgba(0,0,0,0.35);
-    cursor:pointer;
-    transition:transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease, filter 0.5s ease, box-shadow 0.5s ease, z-index 0s;
-  }
-  .gallery-item.is-front{
-    transform:translate(-50%, -50%) rotate(0deg) scale(1);
-    opacity:1;
-    filter:none;
-    z-index:40;
-    box-shadow:0 24px 50px rgba(0,0,0,0.4);
-    cursor:pointer;
-  }
-  .gallery-item.is-off-1{
-    transform:translate(calc(-50% + 78px), calc(-50% + 46px)) rotate(9deg) scale(0.92);
-    opacity:0.9;
-    filter:brightness(0.82);
-    z-index:30;
-  }
-  .gallery-item.is-off-2{
-    transform:translate(calc(-50% + 130px), calc(-50% + 74px)) rotate(15deg) scale(0.84);
-    opacity:0.75;
-    filter:brightness(0.7);
-    z-index:20;
-  }
-  .gallery-item.is-off-3{
-    transform:translate(calc(-50% + 168px), calc(-50% + 30px)) rotate(-6deg) scale(0.76);
-    opacity:0.55;
-    filter:brightness(0.6);
-    z-index:10;
-  }
-  .gallery-item.is-off-n1{
-    transform:translate(calc(-50% - 78px), calc(-50% + 46px)) rotate(-9deg) scale(0.92);
-    opacity:0.9;
-    filter:brightness(0.82);
-    z-index:30;
-  }
-  .gallery-item.is-off-n2{
-    transform:translate(calc(-50% - 130px), calc(-50% + 74px)) rotate(-15deg) scale(0.84);
-    opacity:0.75;
-    filter:brightness(0.7);
-    z-index:20;
-  }
-  .gallery-item.is-off-n3{
-    transform:translate(calc(-50% - 168px), calc(-50% + 30px)) rotate(6deg) scale(0.76);
-    opacity:0.55;
-    filter:brightness(0.6);
-    z-index:10;
-  }
-  .gallery-item.is-hidden{
-    transform:translate(-50%, -50%) scale(0.6);
-    opacity:0;
-    z-index:0;
-  }
-  .gallery-item:not(.is-front){
-    pointer-events:none;
-  }
-  .gallery-item:focus-visible{
-    outline:3px solid rgba(173,139,85,0.9);
-    outline-offset:4px;
-  }
-
-  .gallery-dots{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-top:22px;
-  }
-  .gallery-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    border:none;
-    padding:0;
-    background:rgba(226,201,143,0.35);
-    cursor:pointer;
-    transition:background 0.3s ease, transform 0.3s ease;
-  }
-  .gallery-dot.is-active{
-    background:var(--gold-soft);
-    transform:scale(1.35);
-  }
-
-  .gallery-controls{
-    display:flex;
-    justify-content:center;
-    gap:16px;
-    margin-top:18px;
-  }
-  .gallery-arrow{
-    position:relative;
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    border:1px solid var(--gold-soft);
-    background:transparent;
-    color:var(--ink);
-    font-size:1.3rem;
-    line-height:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    transition:background 0.2s ease, color 0.2s ease;
-  }
-  .gallery-arrow:hover{
-    background:var(--gold-soft);
-    color:#fff;
-  }
-
-  .gallery-modal{
-    position:fixed;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-    transition:opacity 0.25s ease, visibility 0.25s ease;
-    z-index:120;
-  }
-  .gallery-modal.is-open{
-    opacity:1;
-    visibility:visible;
-    pointer-events:auto;
-  }
-  .gallery-modal-backdrop{
-    position:absolute;
-    inset:0;
-    background:rgba(14,14,14,0.86);
-  }
-  .gallery-modal-content{
-    position:relative;
-    z-index:1;
-    width:min(90vw, 480px);
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.2);
-    border-radius:18px;
-    padding:16px;
-    box-shadow:0 26px 60px rgba(0,0,0,0.35);
-    touch-action:pan-y;
-  }
-  .gallery-modal-content img{
-    display:block;
-    width:100%;
-    max-height:78vh;
-    object-fit:cover;
-    border-radius:12px;
-    pointer-events:none;
-    user-select:none;
-  }
-  .gallery-modal-close{
-    position:absolute;
-    top:-10px;
-    right:-10px;
-    width:40px;
-    height:40px;
-    border:none;
-    border-radius:50%;
-    background:#fff;
-    color:#111;
-    font-size:1.8rem;
-    line-height:1;
-    cursor:pointer;
-    box-shadow:0 6px 18px rgba(0,0,0,0.2);
-    z-index:2;
-  }
-  .gallery-modal-nav{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    border:none;
-    background:rgba(0,0,0,0.45);
-    color:#fff;
-    font-size:1.6rem;
-    line-height:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    z-index:2;
-  }
-  .gallery-modal-prev{ left:-6px; }
-  .gallery-modal-next{ right:-6px; }
-
-  @media (max-width:600px){
-    .gallery-stage{ height:min(84vw, 340px); }
-    .gallery-item{ width:min(62vw, 260px); height:min(62vw, 260px); }
-    .gallery-item.is-off-1{ transform:translate(calc(-50% + 56px), calc(-50% + 36px)) rotate(9deg) scale(0.9); }
-    .gallery-item.is-off-2{ transform:translate(calc(-50% + 96px), calc(-50% + 56px)) rotate(15deg) scale(0.82); }
-    .gallery-item.is-off-3{ transform:translate(calc(-50% + 126px), calc(-50% + 22px)) rotate(-6deg) scale(0.74); }
-    .gallery-item.is-off-n1{ transform:translate(calc(-50% - 56px), calc(-50% + 36px)) rotate(-9deg) scale(0.9); }
-    .gallery-item.is-off-n2{ transform:translate(calc(-50% - 96px), calc(-50% + 56px)) rotate(-15deg) scale(0.82); }
-    .gallery-item.is-off-n3{ transform:translate(calc(-50% - 126px), calc(-50% + 22px)) rotate(6deg) scale(0.74); }
-    .gallery-modal-nav{ width:36px; height:36px; font-size:1.3rem; }
-  }
+  /* GALERI: lihat blok REVISI di paling bawah */
 
   /* Acara */
   .event-grid{
@@ -970,7 +737,7 @@
     border-radius:2px;
     padding:32px 28px;
     text-align:center;
-    background:rgba(0, 0, 0, 0.492);
+    background:rgba(255,255,255,0.6);
     color:var(--paper);
   }
   .event-name{
@@ -981,7 +748,7 @@
     color:var(--gold-soft);
     margin-bottom:16px;
   }
-  .event-detail{ font-size:0.95rem; line-height:2; color:rgba(246,240,226,0.86); }
+  .event-detail{ font-size:0.95rem; line-height:2; color:rgba(75,61,47,0.86); }
   .event-detail strong{ color:var(--paper); font-weight:500; }
   .event-icon{
     display:inline-block;
@@ -1060,7 +827,7 @@
   }
   .venue-maps-btn:hover{
     background:var(--gold-soft);
-    color:#111;
+    color:#fff;
   }
 
   .venue-map-wrap{
@@ -1107,7 +874,7 @@
     text-align:center;
     font-size:0.95rem;
     line-height:1.8;
-    color:rgba(246,240,226,0.86);
+    color:rgba(75,61,47,0.86);
   }
   .gift-grid{
     display:grid;
@@ -1122,7 +889,7 @@
     border-radius:2px;
     padding:32px 28px;
     text-align:center;
-    background:rgba(0, 0, 0, 0.492);
+    background:rgba(255,255,255,0.6);
     color:var(--paper);
   }
   .gift-label{
@@ -1149,7 +916,7 @@
   }
   .gift-owner{
     font-size:0.85rem;
-    color:rgba(246,240,226,0.75);
+    color:rgba(75,61,47,0.75);
     margin:0 0 20px;
   }
   .gift-copy{
@@ -1166,17 +933,17 @@
   }
   .gift-copy:hover{
     background:var(--gold-soft);
-    color:#111;
+    color:#fff;
   }
   .gift-copy.is-copied{
     background:var(--gold-soft);
-    color:#111;
+    color:#fff;
   }
 
   /* Closing */
   .closing{
     position:relative;
-    background:#0c0c0b;
+    background:#f1e7d6;
     color:var(--paper);
     text-align:center;
     overflow:hidden;
@@ -1188,7 +955,7 @@
     background-image:url('bunga.png');
     background-size:100% 100%;
     background-repeat:no-repeat;
-    opacity:0.4;
+    opacity:0.9;
     pointer-events:none;
   }
   .closing .content-inner{ position:relative; z-index:1; }
@@ -1286,9 +1053,9 @@
   width:46px;
   height:46px;
   border-radius:50%;
-  background:rgba(20,20,20,0.55);
-  border:1px solid var(--gold-soft);
-  color:var(--paper);
+  background:rgba(20,20,20,0.45);
+  border:1px solid rgba(255,255,255,0.7);
+  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -1379,4 +1146,213 @@
   font-size:0.88rem;
   color:var(--ink-soft);
   font-style:italic;
+}
+
+
+/* =========================================================
+   REVISI — font, cover putih, galeri grid
+   ========================================================= */
+
+/* --- Font script HANYA untuk nama mempelai + beberapa kalimat pilihan ---
+   Nama    : .cover-names, .hero-names, .couple-name, .closing-names -> Great Vibes
+   Kalimat : "Dear" di cover, judul "We Are Getting Married"       -> Allura
+   Tambah selector di daftar Allura bila ingin kalimat lain ikut script. */
+.cover-names,
+.hero-names,
+.couple-name,
+.closing-names{
+  font-family:'Great Vibes','Allura',cursive;
+  font-style:normal;
+  font-weight:400;
+  letter-spacing:0;
+}
+.cover-names{ font-size:clamp(4.6rem, 20vw, 7.5rem); line-height:1; }
+.cover-names .amp{
+  font-family:'Great Vibes',cursive;
+  font-style:normal;
+  font-size:0.6em;
+  margin:0 10px;
+}
+.hero-names{ font-size:clamp(3rem, 12vw, 4.6rem); line-height:1.15; }
+.hero-amp{ font-family:'Great Vibes',cursive; font-style:normal; font-size:0.7em; margin:0; }
+.couple-name{ font-size:clamp(2.2rem, 8vw, 3rem); line-height:1.1; }
+.closing-names{ font-size:clamp(3.4rem, 14vw, 5rem); margin-bottom:6px; }
+
+.cover-guest span,
+#mempelai .section-title{
+  font-family:'Allura','Great Vibes',cursive;
+  font-style:normal;
+  font-weight:400;
+}
+#mempelai .section-title{ font-size:clamp(2.6rem, 10vw, 3.4rem); line-height:1.1; }
+
+/* --- Cover: semua teks putih, tanpa garis --- */
+.cover-scrim{
+  background:linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.3) 45%, rgba(0,0,0,0.5) 100%);
+}
+.cover-content,
+.cover-content *{
+  color:#fff;
+  text-shadow:0 2px 14px rgba(0,0,0,0.45);
+}
+.cover-content .cover-guest span,
+.cover-content .cover-names .amp,
+.cover-content .guest-name{ color:#fff; }
+.cover-guest span{ font-size:1.9rem; opacity:1; }
+.cover-date{ opacity:1; }
+.open-btn{
+  background:rgba(255,255,255,0.14);
+  border:1.5px solid rgba(255,255,255,0.95);
+  text-shadow:none;
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+}
+.open-btn:hover{ background:rgba(255,255,255,0.28); border-color:#fff; }
+
+/* --- Teks di atas foto mempelai tetap putih --- */
+.couple-name,
+.couple-parents{
+  color:#fff;
+  text-shadow:0 2px 12px rgba(0,0,0,0.55);
+}
+.couple-instagram a{
+  color:#fff;
+  border-color:rgba(255,255,255,0.85);
+  background:rgba(0,0,0,0.18);
+  text-shadow:none;
+}
+
+/* --- Galeri: grid statis, susunan 2 - 1 - 2 - 2 --- */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  max-width:560px;
+  margin:0 auto;
+}
+.gallery-item{
+  display:block;
+  width:100%;
+  aspect-ratio:3/4;
+  padding:0;
+  border:none;
+  border-radius:4px;
+  background-color:#e4d9c6;
+  background-size:cover;
+  background-position:center 25%;
+  cursor:pointer;
+}
+.gallery-item.is-wide{
+  grid-column:1 / -1;
+  aspect-ratio:4/5;
+}
+.gallery-item:focus-visible{ outline:3px solid var(--gold-soft); outline-offset:3px; }
+
+.gallery-modal{ transition:none; }
+.gallery-modal-backdrop{ background:rgba(30,24,18,0.85); }
+
+/* Modal foto (tap untuk memperbesar) — tanpa animasi */
+.gallery-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  z-index:120;
+}
+.gallery-modal.is-open{ display:flex; }
+.gallery-modal-backdrop{ position:absolute; inset:0; }
+.gallery-modal-content{
+  position:relative;
+  z-index:1;
+  width:min(90vw, 480px);
+}
+.gallery-modal-content img{
+  display:block;
+  width:100%;
+  max-height:82vh;
+  object-fit:contain;
+  border-radius:6px;
+  user-select:none;
+}
+.gallery-modal-close{
+  position:absolute;
+  top:-14px;
+  right:-8px;
+  width:38px;
+  height:38px;
+  border:none;
+  border-radius:50%;
+  background:#fff;
+  color:#3a2f24;
+  font-size:1.6rem;
+  line-height:1;
+  cursor:pointer;
+  z-index:2;
+}
+.gallery-modal-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,0.85);
+  color:#3a2f24;
+  font-size:1.4rem;
+  line-height:1;
+  cursor:pointer;
+  z-index:2;
+}
+.gallery-modal-prev{ left:-6px; }
+.gallery-modal-next{ right:-6px; }
+
+/* PAKSA SEMUA TEKS DI BAGIAN DALAM MENJADI PUTIH */
+body.opened,
+body.opened .hero,
+body.opened section.content,
+body.opened h1,
+body.opened h2,
+body.opened h3,
+body.opened p,
+body.opened span,
+body.opened cite,
+body.opened .hero-subkicker,
+body.opened .hero-location,
+body.opened .hero-scroll,
+body.opened .invite-text,
+body.opened .invite-footnote,
+body.opened .invite-highlight,
+body.opened .hero-date,
+body.opened .section-label,
+body.opened .section-title,
+body.opened .event-detail,
+body.opened .event-detail strong,
+body.opened .venue-address,
+body.opened .venue-title,
+body.opened .gift-intro,
+body.opened .gift-bank,
+body.opened .gift-number,
+body.opened .gift-owner,
+body.opened .closing-message {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7); /* Bayangan teks agar tetap terbaca jelas di atas foto */
+}
+
+/* Penyesuaian warna kartu & tombol transparan */
+body.opened .event-card,
+body.opened .gift-card,
+body.opened .countdown-cell {
+  background: rgba(0, 0, 0, 0.35) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+body.opened .gift-copy,
+body.opened .venue-maps-btn,
+body.opened .rsvp-submit {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
 }
