@@ -511,13 +511,15 @@
     display:flex;
     justify-content:center;
     align-items:stretch;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-top:30px;
+    gap:8px;
+    flex-wrap:nowrap;
+    max-width:380px;
+    margin:30px auto 0;
   }
   .countdown-cell{
-    min-width:88px;
-    padding:18px 14px 12px;
+    flex:1 1 0;
+    min-width:0;
+    padding:16px 6px 12px;
     border:1px solid var(--line);
     background:rgba(255,255,255,0.6);
     text-align:center;
@@ -1251,63 +1253,30 @@
 .gallery-modal{ transition:none; }
 .gallery-modal-backdrop{ background:rgba(30,24,18,0.85); }
 
-/* Modal foto (tap untuk memperbesar) — tanpa animasi */
+/* Modal foto — tanpa tombol: geser untuk ganti, tap di luar foto untuk menutup */
 .gallery-modal{
   position:fixed;
   inset:0;
   display:none;
   align-items:center;
   justify-content:center;
-  padding:24px;
+  background:rgba(20,16,12,0.9);
+  touch-action:none;
   z-index:120;
 }
 .gallery-modal.is-open{ display:flex; }
-.gallery-modal-backdrop{ position:absolute; inset:0; }
-.gallery-modal-content{
-  position:relative;
-  z-index:1;
-  width:min(90vw, 480px);
-}
-.gallery-modal-content img{
+.gallery-modal img{
   display:block;
-  width:100%;
-  max-height:82vh;
+  max-width:92vw;
+  max-height:88vh;
+  width:auto;
+  height:auto;
   object-fit:contain;
   border-radius:6px;
   user-select:none;
+  -webkit-user-select:none;
+  -webkit-user-drag:none;
 }
-.gallery-modal-close{
-  position:absolute;
-  top:-14px;
-  right:-8px;
-  width:38px;
-  height:38px;
-  border:none;
-  border-radius:50%;
-  background:#fff;
-  color:#3a2f24;
-  font-size:1.6rem;
-  line-height:1;
-  cursor:pointer;
-  z-index:2;
-}
-.gallery-modal-nav{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  border:none;
-  background:rgba(255,255,255,0.85);
-  color:#3a2f24;
-  font-size:1.4rem;
-  line-height:1;
-  cursor:pointer;
-  z-index:2;
-}
-.gallery-modal-prev{ left:-6px; }
-.gallery-modal-next{ right:-6px; }
 
 /* PAKSA SEMUA TEKS DI BAGIAN DALAM MENJADI PUTIH */
 body.opened,
