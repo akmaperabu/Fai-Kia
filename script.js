@@ -100,9 +100,7 @@ var galleryItems = galleryGrid ? toArray(galleryGrid.querySelectorAll('.gallery-
 if (galleryItems.length) {
   var modal = document.getElementById('galleryModal');
   var modalImg = document.getElementById('galleryPreview');
-  var closeModalBtn = document.querySelector('.gallery-modal-close');
-  var prevModalBtn = document.querySelector('.gallery-modal-prev');
-  var nextModalBtn = document.querySelector('.gallery-modal-next');
+  if (modal) document.body.appendChild(modal); // agar selalu di atas semua elemen (termasuk tombol musik)
   var galleryTotal = galleryItems.length;
   var activeIndex = 0;
 
@@ -137,12 +135,28 @@ if (galleryItems.length) {
     galleryItems[g].addEventListener('click', makeOpenHandler(g));
   }
 
-  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-  if (prevModalBtn) prevModalBtn.addEventListener('click', function () { showPhoto(activeIndex - 1); });
-  if (nextModalBtn) nextModalBtn.addEventListener('click', function () { showPhoto(activeIndex + 1); });
+  // Geser kiri/kanan = ganti foto. Tap di luar foto = tutup.
+  var startX = 0, startY = 0, swiped = false;
+
   if (modal) {
+    modal.addEventListener('pointerdown', function (event) {
+      startX = event.clientX;
+      startY = event.clientY;
+      swiped = false;
+    });
+
+    modal.addEventListener('pointerup', function (event) {
+      var dx = event.clientX - startX;
+      var dy = event.clientY - startY;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+        swiped = true;
+        showPhoto(activeIndex + (dx < 0 ? 1 : -1));
+      }
+    });
+
     modal.addEventListener('click', function (event) {
-      if (event.target.getAttribute('data-close') === 'true') closeModal();
+      if (swiped) { swiped = false; return; }
+      if (event.target !== modalImg) closeModal();
     });
   }
   document.addEventListener('keydown', function (event) {
