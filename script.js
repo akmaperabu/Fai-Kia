@@ -92,212 +92,65 @@ if (musicToggle && bgMusic) {
 }
 
 // ============================================================
-// GALERI FOTO — tumpukan foto berserakan (scattered pile) + modal swipe
+// GALERI FOTO — grid statis (2 - 1 - 2 - 2), tap untuk memperbesar
 // ============================================================
-var galleryStageEl = document.getElementById('galleryStage');
-var galleryDotsWrap = document.getElementById('galleryDots');
-var galleryItems = galleryStageEl ? toArray(galleryStageEl.children) : [];
+var galleryGrid = document.getElementById('galleryGrid');
+var galleryItems = galleryGrid ? toArray(galleryGrid.querySelectorAll('.gallery-item')) : [];
 
-if (galleryItems.length && galleryStageEl) {
+if (galleryItems.length) {
   var modal = document.getElementById('galleryModal');
   var modalImg = document.getElementById('galleryPreview');
   var closeModalBtn = document.querySelector('.gallery-modal-close');
   var prevModalBtn = document.querySelector('.gallery-modal-prev');
   var nextModalBtn = document.querySelector('.gallery-modal-next');
-  var prevArrow = document.querySelector('.gallery-arrow-prev');
-  var nextArrow = document.querySelector('.gallery-arrow-next');
-  var modalContent = document.querySelector('.gallery-modal-content');
-
-  var total = galleryItems.length;
-  var offsetClasses = ['is-front', 'is-off-1', 'is-off-2', 'is-off-3', 'is-off-n1', 'is-off-n2', 'is-off-n3', 'is-hidden'];
+  var galleryTotal = galleryItems.length;
   var activeIndex = 0;
-  var isDragging = false;
-  var didDrag = false;
-  var dragStartX = 0;
-  var autoplayTimer = null;
-  var modalDragStartX = 0;
-  var modalDragging = false;
 
   function getImageSrc(item) {
-    var match = item.style.backgroundImage.match(/url\(["']?(.*?)['"]?\)/i);
+    var match = item.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/i);
     return match ? match[1] : '';
   }
 
-  function removeOffsetClasses(item) {
-    for (var i = 0; i < offsetClasses.length; i++) {
-      item.classList.remove(offsetClasses[i]);
-    }
-  }
-
-  function updateDots() {
-    if (!galleryDotsWrap) return;
-    var dots = toArray(galleryDotsWrap.children);
-    for (var i = 0; i < dots.length; i++) {
-      if (i === activeIndex) dots[i].classList.add('is-active');
-      else dots[i].classList.remove('is-active');
-    }
-  }
-
-  function layoutStage() {
-    for (var index = 0; index < galleryItems.length; index++) {
-      var item = galleryItems[index];
-      var offset = (index - activeIndex + total) % total;
-      var normalized = offset > total / 2 ? offset - total : offset;
-
-      removeOffsetClasses(item);
-      if (normalized === 0) item.classList.add('is-front');
-      else if (normalized === 1) item.classList.add('is-off-1');
-      else if (normalized === 2) item.classList.add('is-off-2');
-      else if (normalized === 3) item.classList.add('is-off-3');
-      else if (normalized === -1) item.classList.add('is-off-n1');
-      else if (normalized === -2) item.classList.add('is-off-n2');
-      else if (normalized === -3) item.classList.add('is-off-n3');
-      else item.classList.add('is-hidden');
-    }
-    updateDots();
-  }
-
-  function goTo(index) {
-    activeIndex = (index + total) % total;
-    layoutStage();
-  }
-
-  function restartAutoplay() {
-    if (autoplayTimer) clearInterval(autoplayTimer);
-    autoplayTimer = setInterval(function () {
-      goTo(activeIndex + 1);
-    }, 2000);
-  }
-
-  function pauseAutoplay() {
-    if (autoplayTimer) clearInterval(autoplayTimer);
-  }
-
-  function makeDotClickHandler(index) {
-    return function () {
-      goTo(index);
-      restartAutoplay();
-    };
-  }
-
-  if (galleryDotsWrap) {
-    for (var d = 0; d < galleryItems.length; d++) {
-      var dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'gallery-dot';
-      dot.setAttribute('aria-label', 'Ke foto ' + (d + 1));
-      dot.addEventListener('click', makeDotClickHandler(d));
-      galleryDotsWrap.appendChild(dot);
-    }
+  function showPhoto(index) {
+    activeIndex = (index + galleryTotal) % galleryTotal;
+    if (modalImg) modalImg.src = getImageSrc(galleryItems[activeIndex]);
   }
 
   function openModal(index) {
-    goTo(index);
-    if (!modal || !modalImg) return;
-    pauseAutoplay();
-    modalImg.src = getImageSrc(galleryItems[activeIndex]);
+    if (!modal) return;
+    showPhoto(index);
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
   }
 
-  function showModalStep(direction) {
-    goTo(activeIndex + direction);
-    if (modalImg) modalImg.src = getImageSrc(galleryItems[activeIndex]);
-  }
-
   function closeModal() {
+    if (!modal) return;
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
-    restartAutoplay();
   }
 
-  function makeItemClickHandler(index) {
-    return function () {
-      if (didDrag) { didDrag = false; return; }
-      openModal(index);
-    };
-  }
-
-  function makeItemKeyHandler(index) {
-    return function (event) {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        openModal(index);
-      }
-    };
+  function makeOpenHandler(index) {
+    return function () { openModal(index); };
   }
 
   for (var g = 0; g < galleryItems.length; g++) {
-    galleryItems[g].addEventListener('click', makeItemClickHandler(g));
-    galleryItems[g].addEventListener('keydown', makeItemKeyHandler(g));
+    galleryItems[g].addEventListener('click', makeOpenHandler(g));
   }
 
-  if (prevArrow) prevArrow.addEventListener('click', function () { goTo(activeIndex - 1); restartAutoplay(); });
-  if (nextArrow) nextArrow.addEventListener('click', function () { goTo(activeIndex + 1); restartAutoplay(); });
   if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-  if (prevModalBtn) prevModalBtn.addEventListener('click', function () { showModalStep(-1); });
-  if (nextModalBtn) nextModalBtn.addEventListener('click', function () { showModalStep(1); });
-
+  if (prevModalBtn) prevModalBtn.addEventListener('click', function () { showPhoto(activeIndex - 1); });
+  if (nextModalBtn) nextModalBtn.addEventListener('click', function () { showPhoto(activeIndex + 1); });
   if (modal) {
     modal.addEventListener('click', function (event) {
       if (event.target.getAttribute('data-close') === 'true') closeModal();
     });
   }
-
   document.addEventListener('keydown', function (event) {
     if (!modal || !modal.classList.contains('is-open')) return;
-    if (event.key === 'ArrowRight') showModalStep(1);
-    if (event.key === 'ArrowLeft') showModalStep(-1);
+    if (event.key === 'ArrowRight') showPhoto(activeIndex + 1);
+    if (event.key === 'ArrowLeft') showPhoto(activeIndex - 1);
     if (event.key === 'Escape') closeModal();
   });
-
-  // Swipe / drag manual di foto depan
-  galleryStageEl.addEventListener('pointerdown', function (event) {
-    isDragging = true;
-    didDrag = false;
-    dragStartX = event.clientX;
-    pauseAutoplay();
-  });
-  galleryStageEl.addEventListener('pointermove', function (event) {
-    if (!isDragging) return;
-    if (Math.abs(event.clientX - dragStartX) > 6) didDrag = true;
-  });
-  galleryStageEl.addEventListener('pointerup', function (event) {
-    if (!isDragging) return;
-    isDragging = false;
-    var dx = event.clientX - dragStartX;
-    if (Math.abs(dx) > 40) {
-      goTo(activeIndex + (dx < 0 ? 1 : -1));
-    }
-    restartAutoplay();
-  });
-  galleryStageEl.addEventListener('pointerleave', function () {
-    if (!isDragging) return;
-    isDragging = false;
-    restartAutoplay();
-  });
-
-  // Swipe di dalam modal (kayak Tinder / IG story)
-  if (modalContent) {
-    modalContent.addEventListener('pointerdown', function (event) {
-      modalDragStartX = event.clientX;
-      modalDragging = true;
-    });
-    modalContent.addEventListener('pointerup', function (event) {
-      if (!modalDragging) return;
-      var deltaX = event.clientX - modalDragStartX;
-      if (Math.abs(deltaX) > 40) {
-        showModalStep(deltaX < 0 ? 1 : -1);
-      }
-      modalDragging = false;
-    });
-    modalContent.addEventListener('pointerleave', function () {
-      modalDragging = false;
-    });
-  }
-
-  goTo(0);
-  restartAutoplay();
 }
 
 // ============================================================
