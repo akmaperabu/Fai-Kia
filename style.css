@@ -1,9 +1,3 @@
-/* =========================================================
-     TOKENS
-     Ubah nilai di sini untuk menyesuaikan tampilan.
-     - --fade-duration : lama transisi memudar antar foto (detik)
-     - --hold-duration : lama satu foto ditampilkan penuh (detik)
-  ========================================================= */
   :root{
     --ink:#4b3d2f;         /* teks utama, cokelat hangat */
     --ink-soft:#8a7a64;
@@ -39,11 +33,6 @@
 
   img{max-width:100%;display:block;}
 
-  /* ---------------------------------------------------------
-     BACKGROUND SLIDESHOW
-     4 foto (foto1.jpg ... foto4.jpg) memudar bergiliran.
-     Ganti nama file di bawah bila aset berbeda.
-  --------------------------------------------------------- */
   .bg-slideshow{
     position:fixed;
     inset:0;
@@ -93,9 +82,7 @@
     .bg-photo{ transition:none; }
   }
 
-  /* ---------------------------------------------------------
-     COVER
-  --------------------------------------------------------- */
+ 
   .cover{
     position:relative;
     z-index:2;
@@ -281,9 +268,6 @@
   .open-btn:active{ transform:translateY(0); }
   .open-btn:focus-visible{ outline:3px solid var(--gold-soft); outline-offset:3px; }
 
-  /* ---------------------------------------------------------
-     HERO (muncul setelah dibuka)
-  --------------------------------------------------------- */
   .hero{
     position:relative;
     z-index:1;
@@ -540,10 +524,6 @@
     margin-top:10px;
   }
 
-  /* ---------------------------------------------------------
-     SHARED SECTION STYLES (konten setelah hero, latar solid
-     agar menutupi slideshow di belakangnya)
-  --------------------------------------------------------- */
   section.content {
   position: relative;
   z-index: 1;
@@ -710,10 +690,6 @@
     color:var(--paper);
     text-shadow:0 2px 12px rgba(0,0,0,0.4);
   }
-
-  /* GALERI: lihat blok REVISI di paling bawah */
-
-  /* Acara */
   .event-grid{
     display:grid;
     grid-template-columns:1fr;
@@ -746,13 +722,11 @@
     color:var(--gold-soft);
   }
 
-  /* Rapatkan jarak antar section Acara & Tempat Pelaksanaan */
   #acara{ padding-bottom:28px !important; }
   #lokasi{ padding-top:28px !important; }
   #lokasi .section-title{ margin-bottom:20px; }
   #lokasi .venue-card{ padding-top:24px; }
 
-  /* Tempat Pelaksanaan */
   #acara{ padding-bottom:40px; }
   #lokasi{ padding-top:36px; }
   #lokasi .section-title{ margin-bottom:20px; }
@@ -929,8 +903,6 @@
     background:var(--gold-soft);
     color:#fff;
   }
-
-  /* Closing */
   .closing{
     position:relative;
     background:#f1e7d6;
@@ -1064,9 +1036,6 @@
   to{ transform:rotate(360deg); }
 }
 
-/* ---------------------------------------------------------
-   UCAPAN (RSVP FORM)
---------------------------------------------------------- */
 .rsvp-card{
   max-width:480px;
   margin:0 auto;
@@ -1138,15 +1107,6 @@
   font-style:italic;
 }
 
-
-/* =========================================================
-   REVISI — font, cover putih, galeri grid
-   ========================================================= */
-
-/* --- Font script HANYA untuk nama mempelai + beberapa kalimat pilihan ---
-   Nama    : .cover-names, .hero-names, .couple-name, .closing-names -> Great Vibes
-   Kalimat : "Dear" di cover, judul "We Are Getting Married"       -> Allura
-   Tambah selector di daftar Allura bila ingin kalimat lain ikut script. */
 .cover-names,
 .hero-names,
 .couple-name,
@@ -1199,7 +1159,6 @@
 }
 .open-btn:hover{ background:rgba(255,255,255,0.28); border-color:#fff; }
 
-/* --- Teks di atas foto mempelai tetap putih --- */
 .couple-name,
 .couple-parents{
   color:#fff;
@@ -1241,7 +1200,6 @@
 .gallery-modal{ transition:none; }
 .gallery-modal-backdrop{ background:rgba(30,24,18,0.85); }
 
-/* Modal foto — tanpa tombol: geser untuk ganti, tap di luar foto untuk menutup */
 .gallery-modal{
   position:fixed;
   inset:0;
@@ -1266,7 +1224,6 @@
   -webkit-user-drag:none;
 }
 
-/* PAKSA SEMUA TEKS DI BAGIAN DALAM MENJADI PUTIH */
 body.opened,
 body.opened .hero,
 body.opened section.content,
@@ -1299,7 +1256,6 @@ body.opened .closing-message {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7); /* Bayangan teks agar tetap terbaca jelas di atas foto */
 }
 
-/* Penyesuaian warna kartu & tombol transparan */
 body.opened .event-card,
 body.opened .gift-card,
 body.opened .countdown-cell {
