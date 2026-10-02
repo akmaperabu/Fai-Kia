@@ -312,3 +312,29 @@ if (rsvpForm) {
 if (rsvpList) {
   loadUcapan();
 }
+// ============================================================
+// SLIDESHOW BACKGROUND — otomatis, berapa pun jumlah .bg-photo
+// Atur durasi lewat --fade-duration & --hold-duration di style.css
+// ============================================================
+(function () {
+  var photos = toArray(document.querySelectorAll('#bgSlideshow .bg-photo'));
+  if (!photos.length) return;
+
+  var rootStyle = getComputedStyle(document.documentElement);
+  function seconds(name, fallback) {
+    var v = parseFloat(rootStyle.getPropertyValue(name));
+    return isNaN(v) ? fallback : v;
+  }
+  var interval = (seconds('--fade-duration', 1) + seconds('--hold-duration', 4)) * 1000;
+  var current = 0;
+  photos[0].classList.add('is-active');
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (photos.length < 2 || reduceMotion) return;
+
+  setInterval(function () {
+    photos[current].classList.remove('is-active');
+    current = (current + 1) % photos.length;
+    photos[current].classList.add('is-active');
+  }, interval);
+})();
