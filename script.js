@@ -1,6 +1,3 @@
-// ============================================================
-// Helper kecil
-// ============================================================
 function pad2(n) {
   n = String(n);
   return n.length < 2 ? '0' + n : n;
@@ -12,9 +9,6 @@ function toArray(list) {
   return out;
 }
 
-// ============================================================
-// BUKA UNDANGAN
-// ============================================================
 var openBtn = document.getElementById('openBtn');
 var body = document.body;
 var guestNameNode = document.querySelector('.guest-name');
@@ -59,9 +53,6 @@ if (openBtn) {
   });
 }
 
-// ============================================================
-// MUSIK LATAR
-// ============================================================
 var bgMusic = document.getElementById('bgMusic');
 var musicToggle = document.getElementById('musicToggle');
 var musicIcon = document.getElementById('musicIcon');
@@ -91,9 +82,6 @@ if (musicToggle && bgMusic) {
   bgMusic.addEventListener('pause', updateMusicIcon);
 }
 
-// ============================================================
-// GALERI FOTO — grid statis (2 - 1 - 2 - 2), tap untuk memperbesar
-// ============================================================
 var galleryGrid = document.getElementById('galleryGrid');
 var galleryItems = galleryGrid ? toArray(galleryGrid.querySelectorAll('.gallery-item')) : [];
 
@@ -167,9 +155,6 @@ if (galleryItems.length) {
   });
 }
 
-// ============================================================
-// HADIAH — salin nomor rekening / e-wallet
-// ============================================================
 var giftCopyButtons = toArray(document.querySelectorAll('.gift-copy'));
 for (var gc = 0; gc < giftCopyButtons.length; gc++) {
   (function (btn) {
@@ -204,10 +189,7 @@ for (var gc = 0; gc < giftCopyButtons.length; gc++) {
   })(giftCopyButtons[gc]);
 }
 
-// ============================================================
-// COUNTDOWN — menuju 09 Oktober 2026, 08:00 WITA (akad)
-// Ubah targetDate bila jadwal berubah.
-// ============================================================
+
 var targetDate = new Date('2026-10-09T08:00:00+08:00').getTime();
 
 function updateCountdown() {
@@ -239,9 +221,6 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// ============================================================
-// UCAPAN — kirim & tampilkan dari Google Sheets
-// ============================================================
 var rsvpForm = document.getElementById('rsvpForm');
 var rsvpNote = document.getElementById('rsvpNote');
 var rsvpList = document.getElementById('rsvpList');
@@ -312,10 +291,7 @@ if (rsvpForm) {
 if (rsvpList) {
   loadUcapan();
 }
-// ============================================================
-// SLIDESHOW BACKGROUND — otomatis, berapa pun jumlah .bg-photo
-// Atur durasi lewat --fade-duration & --hold-duration di style.css
-// ============================================================
+
 (function () {
   var photos = toArray(document.querySelectorAll('#bgSlideshow .bg-photo'));
   if (!photos.length) return;
