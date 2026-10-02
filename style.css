@@ -1,15 +1,15 @@
   :root{
-    --ink:#4b3d2f;         /* teks utama, cokelat hangat */
+    --ink:#4b3d2f;     
     --ink-soft:#8a7a64;
-    --cream:#f8f2e7;       /* dasar konten, ivory terang */
-    --paper:#4b3d2f;       /* teks di area terang */
+    --cream:#f8f2e7;      
+    --paper:#4b3d2f;     
     --gold:#b08d57;
-    --gold-soft:#a98450;   /* emas yang cukup kontras di latar terang */
+    --gold-soft:#a98450; 
     --sage:#a98450;
     --line:rgba(169,132,80,0.35);
 
-    --fade-duration: 1s;   /* <-- durasi transisi memudar (diminta 1 detik) */
-    --hold-duration: 4s;   /* lama tiap foto tampil penuh sebelum memudar */
+    --fade-duration: 1s; 
+    --hold-duration: 4s;
   }
 
   *{box-sizing:border-box;}
@@ -18,7 +18,7 @@
   margin: 0;
   font-family: 'Jost', sans-serif;
   color: #fff;
-  background: transparent; /* Ubah dari var(--cream) menjadi transparent */
+  background: transparent; 
   overflow-x: hidden;
   min-height: 100vh;
   min-height: 100dvh;
@@ -71,8 +71,7 @@
 
   @keyframes bgCycle{
     0%{opacity:0;}
-    /* fade-in selesai */
-    6.25%{opacity:1;}     /* ~ fade-duration / total, disesuaikan JS-free lewat proporsi 1/(1+4)=0.2 dibagi 4 slot */
+    6.25%{opacity:1;}     
     45%{opacity:1;}
     51.25%{opacity:0;}
     100%{opacity:0;}
@@ -512,7 +511,6 @@
     color:var(--gold-soft);
   }
 
-  /* Save The Date — dirapatkan supaya tidak ada ruang kosong berlebih */
   .savedate-section{
     padding-top:52px !important;
     padding-bottom:52px !important;
@@ -527,7 +525,7 @@
   section.content {
   position: relative;
   z-index: 1;
-  background: transparent; /* Ubah dari var(--cream) menjadi transparent */
+  background: transparent; 
   padding: 72px 24px;
 }
   section.content:not(#mempelai):not(#galeri):not(#cerita){
