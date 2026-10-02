@@ -66,7 +66,7 @@
   body.opened .bg-slideshow{
     opacity:1;
   }
-  .bg-photo{
+.bg-photo{
     position:absolute;
     inset:0;
     width:100%;
@@ -76,20 +76,9 @@
     background-position:center;
     background-repeat:no-repeat;
     opacity:0;
-    transition:filter 0.6s ease, transform 0.6s ease;
-    animation-name:bgCycle;
-    animation-duration:calc((var(--fade-duration) + var(--hold-duration)) * 4);
-    animation-iteration-count:infinite;
-    animation-timing-function:linear;
+    transition:opacity var(--fade-duration) ease, filter 0.6s ease, transform 0.6s ease;
   }
-  body.opened .bg-photo{
-    filter:blur(0.2px);
-    transform:scale(1.08);
-  }
-  .bg-photo:nth-child(1){ animation-delay:0s; }
-  .bg-photo:nth-child(2){ animation-delay:calc((var(--fade-duration) + var(--hold-duration)) * 1); }
-  .bg-photo:nth-child(3){ animation-delay:calc((var(--fade-duration) + var(--hold-duration)) * 2); }
-  .bg-photo:nth-child(4){ animation-delay:calc((var(--fade-duration) + var(--hold-duration)) * 3); }
+  .bg-photo.is-active{ opacity:1; }
 
   @keyframes bgCycle{
     0%{opacity:0;}
@@ -100,9 +89,8 @@
     100%{opacity:0;}
   }
 
-  @media (prefers-reduced-motion:reduce){
-    .bg-photo{animation:none;opacity:0;}
-    .bg-photo:first-child{opacity:1;}
+    @media (prefers-reduced-motion:reduce){
+    .bg-photo{ transition:none; }
   }
 
   /* ---------------------------------------------------------
